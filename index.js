@@ -1,11 +1,36 @@
-const express = require("express")
-const app = express()
-const cors=require('cors')
-const mongoose = require("mongoose")
-const user = require('./userModel.js')
+// Importing express
+import express from "express";
+// Improting cors which handile cors policies 
+import cors from "cors";
+// Importing morgan
+import morgan from "morgan";
+// const mongoose = require("mongoose")
+// const user = require('./userModel.js')
+// Creating object for expresss
+const app = express();
+// For allowing other orgin 
+app.use(cors());
+//  It parses incoming requests with JSON payloads and is based on body-parser
+app.use(express.json());
 
-app.use(cors())
-app.use(express.json())
+app.use(morgan('tiny'));
+app.disable('x-powered-by');
+
+// creating responce for home routs 
+app.get('/',(req,res) => {
+    res.status(200).json("Sucessfully connected")
+})
+
+
+
+
+
+
+
+//  starting server 
+app.listen(8000 ,() =>{
+    console.log("sever sarted at 8000")
+})
 
 // const connectionParams={
 //     useCreateIndex: true, 
