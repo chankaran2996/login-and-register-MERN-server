@@ -4,7 +4,8 @@ import express from "express";
 import cors from "cors";
 // Importing morgan
 import morgan from "morgan";
-// const mongoose = require("mongoose")
+// imporing DB connection 
+import connectDB from "../database/connection";
 // const user = require('./userModel.js')
 // Creating object for expresss
 const app = express();
@@ -15,6 +16,9 @@ app.use(express.json());
 
 app.use(morgan('tiny'));
 app.disable('x-powered-by');
+
+// connnection 
+connectDB();
 
 // creating responce for home routs 
 app.get('/',(req,res) => {
@@ -38,7 +42,10 @@ app.listen(8000 ,() =>{
 //     useNewUrlParser: true, 
 //     useUnifiedTopology: true
 // }
-// mongoose.connect('mongodb+srv://chan2996:chan2996@cluster0.zfadu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+// mongoose.connect('mongodb+srv://chan2996:chan2996@cluster0.zfadu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// })
 //     .then( () => {
 //         console.log('Connected to database ')
 //     })
@@ -74,6 +81,6 @@ app.listen(8000 ,() =>{
 //     }
 // })
 
-app.listen(5000 ,() =>{
-    console.log("sever sarted at 5000")
-})
+// app.listen(5000 ,() =>{
+//     console.log("sever sarted at 5000")
+// })
