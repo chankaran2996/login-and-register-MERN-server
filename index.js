@@ -6,6 +6,8 @@ import cors from "cors";
 import morgan from "morgan";
 // imporing DB connection 
 import connectDB from "../database/connection";
+// importing route connection 
+import route from "./router/route";
 // const user = require('./userModel.js')
 // Creating object for expresss
 const app = express();
@@ -25,6 +27,9 @@ app.get('/',(req,res) => {
     res.status(200).json("Sucessfully connected")
 })
 
+
+// connecting with api route 
+app.use('/api',route);
 
 
 
