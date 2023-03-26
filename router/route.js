@@ -1,4 +1,7 @@
 import { Router } from "express";
+// importing all controlles
+import * as controller from '../controllers/appController.js';
+
 
 const route = Router();
 
@@ -30,7 +33,7 @@ Router.route('/createReset').get((req,res) => {
 // POST methods
 
 // For updating user data
-Router.route('/updateUser').post((req,res) => {
+Router.route('/register').post((req,res) => {
     res.json("register success");
 });
 

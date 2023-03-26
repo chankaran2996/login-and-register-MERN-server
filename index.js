@@ -5,9 +5,9 @@ import cors from "cors";
 // Importing morgan
 import morgan from "morgan";
 // imporing DB connection 
-import connectDB from "../database/connection";
+import connectDB from "../database/connection.js";
 // importing route connection 
-import route from "./router/route";
+import route from "./router/route.js";
 // const user = require('./userModel.js')
 // Creating object for expresss
 const app = express();
