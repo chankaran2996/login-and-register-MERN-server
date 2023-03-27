@@ -1,6 +1,14 @@
 import express from "express";
 const router = express.Router();
-import { register,generateOTP,verfiyOTP,createReset,login,resetPassword,updateUser } from "../controllers/appController.js";
+import {
+  register,
+  generateOTP,
+  verfiyOTP,
+  createReset,
+  login,
+  resetPassword,
+  updateUser,
+} from "../controllers/appController.js";
 
 // importing all controlles
 
@@ -30,7 +38,7 @@ router.get("/createReset", createReset);
 // Router.route("/register").post((req, res) => {
 //   res.json("register success");
 // });
-router.get("/register", register);
+router.post("/register", register);
 // for sending mail
 // Router.route("/registerMail").post((req, res) => {
 //   res.json("registerMail success");
