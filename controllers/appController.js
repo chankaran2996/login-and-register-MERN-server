@@ -28,3 +28,7 @@ export const createReset = async (req,res) => {
 export const resetPassword = async (req,res) => {
     res.json("resetPassword success");
 }
+
+export const updateUser = async (req,res) => {
+    res.json("updateUser success");
+}

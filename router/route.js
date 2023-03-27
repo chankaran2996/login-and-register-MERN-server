@@ -1,58 +1,62 @@
 import express from "express";
 const router = express.Router();
-import { register } from "../controllers/appController.js";
+import { register,generateOTP,verfiyOTP,createReset,login,resetPassword,updateUser } from "../controllers/appController.js";
 
 // importing all controlles
 
 // GET metods
-router.get("/register", register);
+
 // user with username
 
 // To generate random OTP
 // Router.route("/generateOTP").get((req, res) => {
 //   res.json(" success");
 // });
-
-// // For verfiy OTP
+router.get("/generateOTP", generateOTP);
+// For verfiy OTP
 // Router.route("/verfiyOTP").get((req, res) => {
 //   res.json(" success");
 // });
 
-// // rest all varabiles
+router.get("/verfiyOTP", verfiyOTP);
+// rest all varabiles
 // Router.route("/createReset").get((req, res) => {
 //   res.json(" success");
 // });
+router.get("/createReset", createReset);
+// POST methods
 
-// // POST methods
-
-// // For updating user data
+// For updating user data
 // Router.route("/register").post((req, res) => {
 //   res.json("register success");
 // });
-
-// // for sending mail
+router.get("/register", register);
+// for sending mail
 // Router.route("/registerMail").post((req, res) => {
 //   res.json("registerMail success");
 // });
-
-// // for autherntication
+// **************************************need to check ****************
+// router.post("/registerMail", registerMail);
+// for autherntication
 // Router.route("/authenticate").post((req, res) => {
 //   res.json("authenticate success");
 // });
 
-// // for login
+// for login
 // Router.route("/login").post((req, res) => {
 //   res.json("login success");
 // });
-
-// // PUT methods
+// *************************************************************************
+router.post("/login", login);
+// PUT methods
 
 // Router.route("/updateUser").put((req, res) => {
 //   res.json("login success");
 // });
-
+router.post("/updateUser", updateUser);
 // Router.route("/resetPassword").put((req, res) => {
 //   res.json("login success");
 // });
+router.post("/resetPassword", resetPassword);
 
 export default router;
