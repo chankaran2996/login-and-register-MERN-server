@@ -1,6 +1,11 @@
+// Importing mongoose 
 import mongoose from "mongoose";
+// Importing bcrypt for hashing password 
 import bcrypt from "bcryptjs";
+
+// Creating schema
 const userSchema = mongoose.Schema(
+  // Adding the fielleds and their type
   {
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
@@ -12,10 +17,12 @@ const userSchema = mongoose.Schema(
     address: { type: String},
     profile: { type: String}
   },
+  // Adding time stramps which used save datas timings entered in DB
   {
     timestamps: true,
   }
 );
+// Hashing 
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
@@ -27,5 +34,7 @@ userSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
+
+// Exporting schema
 const User = mongoose.model("User", userSchema);
 export default User;
