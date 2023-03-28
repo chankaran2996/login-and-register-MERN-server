@@ -36,7 +36,18 @@ export const register = async (req, res, next) => {
 };
 
 export const login = async (req, res) => {
-  res.json("login success");
+  // Spliting data from req.bady to multiple varibles  
+  const { email, password } = req.body;
+  if (!userExists) {
+    res.status(400);
+    throw new Error("User is not found");
+  }
+  try {
+    const user = await User.findOne({ email });
+  } catch (error) {
+    return res.status(500).send({error});
+  }
+
 };
 
 export const getUser = async (req, res) => {

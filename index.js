@@ -4,6 +4,7 @@ import express from "express";
 import cors from "cors";
 // Importing morgan
 import morgan from "morgan";
+// Importing dotenv
 import dotenv from "dotenv";
 dotenv.config();
 // imporing DB connection
