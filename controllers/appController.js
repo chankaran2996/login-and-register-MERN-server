@@ -17,11 +17,24 @@ export const register = async (req, res, next) => {
     res.status(400);
     throw new Error("user already exists");
   }
+  const  generateRandomString = (l) => {
+    let result = "";
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const charactersLength = characters.length;
+    for (let i = 0; i < l; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+  const databaseName =[generateRandomString(6),generateRandomString(6),generateRandomString(6)];
+  const tableName =[generateRandomString(5),generateRandomString(5),generateRandomString(5)];
 //   Creating user 
   const user = await User.create({
     name,
     email,
     password,
+    databaseName,
+    tableName,
     pic,
   });
   if (user) {
