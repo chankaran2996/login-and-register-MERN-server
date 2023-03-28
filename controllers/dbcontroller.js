@@ -27,8 +27,22 @@ export const addQustion = async (req,res) => {
 // Fectch qustion from 
 export const qustionsView = async (req,res) => {
     try {
-        const user = await Qustions.find({},'qustiontitle');
-        res.json(user);
+        const viewQustions = await Qustions.find({},'qustiontitle');
+        res.json(viewQustions);
+      } catch (error) {
+        return res.status(500).send({error});
+      }
+    res.json("Qustions viewed")
+}
+
+// geting qustion by using qustion tile 
+
+export const qustion = async (req,res) => {
+    const {qustiontitle } = req.body;
+    console.log(qustiontitle);
+    try {
+        const viewQustion = await Qustions.findOne({qustiontitle},);
+        res.json(viewQustion);
       } catch (error) {
         return res.status(500).send({error});
       }
