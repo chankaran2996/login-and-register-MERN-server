@@ -1,6 +1,7 @@
 // importing model for schema
 import Qustions from "../models/qustionModel.js";
 
+// creating qustions in DB
 export const addQustion = async (req,res) => {
 
   // Spliting data from req.bady to multiple varibles  
@@ -21,4 +22,15 @@ export const addQustion = async (req,res) => {
         throw new Error("failed to create");
       }
     // res.json("addQustion success");
+}
+
+// Fectch qustion from 
+export const qustionsView = async (req,res) => {
+    try {
+        const user = await Qustions.find({},'qustiontitle');
+        res.json(user);
+      } catch (error) {
+        return res.status(500).send({error});
+      }
+    res.json("Qustions viewed")
 }
