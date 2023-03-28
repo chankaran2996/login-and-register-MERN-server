@@ -11,6 +11,7 @@ dotenv.config();
 import connectDB from "./database/connection.js";
 // importing route connection
 import route from "./router/route.js";
+import dbRoute from "./router/dbRoute.js";
 // const user = require('./userModel.js')
 // Creating object for expresss
 const app = express();
@@ -32,6 +33,8 @@ app.get("/", (req, res) => {
 
 // connecting with api route
 app.use("/api", route);
+
+app.use("/db", dbRoute);
 
 //  starting server
 app.listen(8000, () => {

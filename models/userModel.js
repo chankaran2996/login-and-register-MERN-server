@@ -15,7 +15,9 @@ const userSchema = mongoose.Schema(
     lastName: { type: String},
     mobile : { type : Number},
     address: { type: String},
-    profile: { type: String}
+    profile: { type: String},
+    databaseName: { type : Array },
+    collectionName : { type : Array }
   },
   // Adding time stramps which used save datas timings entered in DB
   {

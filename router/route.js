@@ -1,5 +1,6 @@
 import express from "express";
 const router = express.Router();
+// importing all controlles
 import {
   register,
   generateOTP,
@@ -10,7 +11,7 @@ import {
   updateUser,
 } from "../controllers/appController.js";
 
-// importing all controlles
+
 
 // GET metods
 
