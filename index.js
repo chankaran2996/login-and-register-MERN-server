@@ -23,8 +23,7 @@ app.use(express.json());
 app.use(morgan("tiny"));
 app.disable("x-powered-by");
 
-// connnection
-connectDB();
+
 
 // creating responce for home routs
 app.get("/", (req, res) => {
@@ -36,10 +35,17 @@ app.use("/api", route);
 
 app.use("/db", dbRoute);
 
-//  starting server
-app.listen(8000, () => {
-  console.log("sever sarted at 8000");
-});
+
+// connnection
+const startserver = async () => {
+  await connectDB();
+  //  starting server
+  app.listen(process.env.PORT, () => {
+    console.log(`Server Rur at ${process.env.PORT}`);
+  });
+}
+
+startserver();
 
 // const connectionParams={
 //     useCreateIndex: true,

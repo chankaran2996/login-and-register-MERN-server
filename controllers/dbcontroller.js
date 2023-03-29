@@ -40,10 +40,10 @@ export const qustionsView = async (req,res) => {
 
 export const qustion = async (req,res) => {
     const {qustiontitle,email } = req.body;
-    console.log(qustiontitle);
+    // console.log(qustiontitle);
     try {
-        const viewQustion = await Qustions.findOne({qustiontitle},);
-        const userdetials = await User.findOne({email});
+        const viewQustion = await Qustions.findOne({qustiontitle});
+        const userdetials = await User.findOne({email},'databaseName','tableName');
         const result = {
             'qnstionsdetials':viewQustion,
             'userdetials':userdetials
