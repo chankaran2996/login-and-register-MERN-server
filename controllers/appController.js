@@ -48,10 +48,14 @@ export const register = async (req, res, next) => {
   });
   if (user) {
     res.status(201).json({
-      message: "User added successfully ",
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      pic: user.pic,
+      token: generateToken(user._id),
     });
   } else {
-    // if user is not created saying user is not created
     res.status(400);
     throw new Error("failed to create");
   }
