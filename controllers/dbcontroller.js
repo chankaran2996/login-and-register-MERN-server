@@ -1,6 +1,7 @@
-// importing model for schema
+// importing Qustions model for schema
 import Qustions from "../models/qustionModel.js";
-
+// importing user model for schema
+import User from "../models/userModel.js";
 // creating qustions in DB
 export const addQustion = async (req,res) => {
 
@@ -28,23 +29,28 @@ export const addQustion = async (req,res) => {
 export const qustionsView = async (req,res) => {
     try {
         const viewQustions = await Qustions.find({},'qustiontitle');
-        res.json(viewQustions);
+        res.json({viewQustions});
       } catch (error) {
         return res.status(500).send({error});
       }
-    res.json("Qustions viewed")
+    // res.json("Qustions viewed")
 }
 
 // geting qustion by using qustion tile 
 
 export const qustion = async (req,res) => {
-    const {qustiontitle } = req.body;
+    const {qustiontitle,email } = req.body;
     console.log(qustiontitle);
     try {
         const viewQustion = await Qustions.findOne({qustiontitle},);
-        res.json(viewQustion);
+        const userdetials = await User.findOne({email});
+        const result = {
+            'qnstionsdetials':viewQustion,
+            'userdetials':userdetials
+        }
+        res.json({result});
       } catch (error) {
         return res.status(500).send({error});
       }
-    res.json("Qustions viewed")
+    // res.json("Qustions viewed")
 }
