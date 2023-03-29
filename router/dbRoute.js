@@ -2,7 +2,7 @@
 import express from "express";
 
 // importing all controlles
-import { addQustion , qustionsView , qustion} from "../controllers/dbcontroller.js";
+import { addQustion , qustionsView , qustion , validate } from "../controllers/dbcontroller.js";
 
 // creating new router object
 const dbRoute = express.Router();
@@ -14,5 +14,7 @@ dbRoute.post('/mysql/addqustion',addQustion );
 dbRoute.get('/mysql/qustionsView',qustionsView);
 
 dbRoute.get('/mysql/qustion',qustion);
+
+dbRoute.get('/mysql/validate',validate);
 
 export default dbRoute ;

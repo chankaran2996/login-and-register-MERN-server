@@ -28,7 +28,7 @@ export const addQustion = async (req, res) => {
 export const qustionsView = async (req, res) => {
   try {
     const viewQustions = await Qustions.find({}, "qustiontitle");
-    res.json({ viewQustions });
+    res.status(200).json({ viewQustions });
   } catch (error) {
     return res.status(500).send({ error });
   }
@@ -54,9 +54,44 @@ export const qustion = async (req,res) => {
           }
         })
         viewQustion.explanation=replace.join(" ");
-        res.json({viewQustion});
+        res.status(200).json({viewQustion});
       } catch (error) {
         return res.status(500).send({error});
       }
     // res.json("Qustions viewed")
+}
+
+// Validation for solution
+export const validate = async (req,res) => {
+  const {qustiontitle,email,solution } = req.body;
+  try {
+    let viewQustion = await Qustions.findOne({qustiontitle},{'answer':1,'answerData':1});
+    const userdetials = await User.findOne({email},{'databaseName':1,'tableName':1}); 
+    let arr = viewQustion.answer.split(" ");
+    let replace = arr.map((e) => {
+    let subarr = e.split("");
+      if(subarr[0]=="#"){
+        return userdetials.tableName[subarr[1]];
+      }
+      else{
+        return e;
+      }      
+    });
+    viewQustion.answer=replace.join(" ");
+    if(viewQustion.answer==solution){
+      const response = {
+        'Message':"Test case success",
+        'answerData':viewQustion.answerData
+      };
+      res.status(200).json({response});
+    } 
+    else{
+      const response = {
+        'Message':"Test case falied"
+      };
+      res.status(200).json({response});
+    }  
+  } catch (error) {
+    return res.status(500).send({error});
+  }
 }
