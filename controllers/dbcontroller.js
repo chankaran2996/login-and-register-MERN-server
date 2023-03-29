@@ -38,16 +38,23 @@ export const qustionsView = async (req, res) => {
 // geting qustion by using qustion tile
 
 export const qustion = async (req,res) => {
+
     const {qustiontitle,email } = req.body;
-    console.log(qustiontitle);
     try {
-        const viewQustion = await Qustions.findOne({qustiontitle},);
-        const userdetials = await User.findOne({email});
-        const result = {
-            'qnstionsdetials':viewQustion,
-            'userdetials':userdetials
-        }
-        res.json({result});
+        let viewQustion = await Qustions.findOne({qustiontitle},);
+        const userdetials = await User.findOne({email},{'databaseName':1,'tableName':1});
+        let arr = viewQustion.explanation.split(" ");
+        let replace = arr.map((e) => {
+          let subarr = e.split("");
+          if(subarr[0]=="#"){
+            return userdetials.tableName[subarr[1]];
+          }
+          else{
+            return e;
+          }
+        })
+        viewQustion.explanation=replace.join(" ");
+        res.json({viewQustion});
       } catch (error) {
         return res.status(500).send({error});
       }
