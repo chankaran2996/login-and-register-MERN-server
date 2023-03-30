@@ -41,8 +41,9 @@ export const qustion = async (req,res) => {
 
     const {qustiontitle,email } = req.body;
     try {
-        let viewQustion = await Qustions.findOne({qustiontitle},);
+        let viewQustion = await Qustions.findOne({qustiontitle},{'qustiontitle':1,'explanation':1});
         const userdetials = await User.findOne({email},{'databaseName':1,'tableName':1});
+        console.log(userdetials);
         let arr = viewQustion.explanation.split(" ");
         let replace = arr.map((e) => {
           let subarr = e.split("");
@@ -58,7 +59,6 @@ export const qustion = async (req,res) => {
       } catch (error) {
         return res.status(500).send({error});
       }
-    // res.json("Qustions viewed")
 }
 
 // Validation for solution
