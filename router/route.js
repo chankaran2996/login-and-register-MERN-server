@@ -1,6 +1,7 @@
 import express from "express";
 const router = express.Router();
 // importing all controlles
+///import { accountConfirmation } from "./../controllers/appController";
 import {
   register,
   generateOTP,
@@ -35,6 +36,8 @@ router.post("/login", login);
 // PUT methods
 
 router.post("/updateUser", updateUser);
+
+//app.post("order-confirmation", accountConfirmation);
 
 router.post("/resetPassword", resetPassword);
 
