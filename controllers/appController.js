@@ -1,7 +1,7 @@
 // Importing model for schema
 import User from "../models/userModel.js";
 import generateToken from "../config/generateToken.js";
-import email from "../mail/mail.js";
+import Email from "../mail/mail.js";
 // Registering user
 export const register = async (req, res, next) => {
   // Spliting data from req.bady to multiple varibles
@@ -102,7 +102,7 @@ export const resetPassword = async (req, res) => {
 
 export const accountConfirmation = async (req, res, next) => {
   try {
-    res.json(await email.sendOrderConfirmation(req.body));
+    res.json(await Email());
   } catch (err) {
     next(err);
   }

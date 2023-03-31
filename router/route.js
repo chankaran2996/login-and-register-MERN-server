@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 // importing all controlles
-///import { accountConfirmation } from "./../controllers/appController";
+
 import {
   register,
   generateOTP,
@@ -10,6 +10,7 @@ import {
   login,
   resetPassword,
   updateUser,
+  accountConfirmation,
 } from "../controllers/appController.js";
 
 // GET metods
@@ -37,7 +38,7 @@ router.post("/login", login);
 
 router.post("/updateUser", updateUser);
 
-//app.post("order-confirmation", accountConfirmation);
+router.post("/account-confirmation", accountConfirmation);
 
 router.post("/resetPassword", resetPassword);
 
