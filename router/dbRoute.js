@@ -18,7 +18,7 @@ dbRoute.post("/mysql/addqustion", addQustion);
 // GET method
 dbRoute.get("/mysql/qustionsView", qustionsView);
 
-dbRoute.get("/mysql/qustion", qustion);
+dbRoute.post("/mysql/qustion", qustion);
 
 dbRoute.get("/mysql/validate", validate);
 
