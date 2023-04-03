@@ -20,6 +20,6 @@ dbRoute.get("/mysql/qustionsView", qustionsView);
 
 dbRoute.post("/mysql/qustion", qustion);
 
-dbRoute.get("/mysql/validate", validate);
+dbRoute.post("/mysql/validate", validate);
 
 export default dbRoute;
