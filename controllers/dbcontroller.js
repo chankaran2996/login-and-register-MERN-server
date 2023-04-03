@@ -69,6 +69,7 @@ export const qustion = async (req, res) => {
 
 // Validation for solution
 export const validate = async (req, res) => {
+  console.log(req.body);
   const { qustiontitle, email, solution } = req.body;
   try {
     let viewQustion = await Qustions.findOne(
