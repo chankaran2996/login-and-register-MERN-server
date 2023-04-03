@@ -2,6 +2,8 @@
 import express from "express";
 // Improting cors which handile cors policies
 import cors from "cors";
+
+import mysql from "mysql";
 // Importing morgan
 import morgan from "morgan";
 // Importing dotenv
@@ -12,6 +14,7 @@ import connectDB from "./database/connection.js";
 // importing route connection
 import route from "./router/route.js";
 import dbRoute from "./router/dbRoute.js";
+
 
 import authenticationMiddleware from "./middlewares/authMiddleware.js";
 // Creating object for expresss
