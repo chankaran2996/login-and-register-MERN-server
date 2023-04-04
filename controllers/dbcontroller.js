@@ -2,6 +2,9 @@
 import Qustions from "../models/qustionModel.js";
 // importing user model for schema
 import User from "../models/userModel.js";
+
+
+// import connmysql from "../database/mqsqlconn.js";
 // creating qustions in DB
 export const addQustion = async (req, res) => {
   // Spliting data from req.bady to multiple varibles
@@ -69,7 +72,6 @@ export const qustion = async (req, res) => {
 
 // Validation for solution
 export const validate = async (req, res) => {
-  console.log(req.body);
   const { qustiontitle, email, solution } = req.body;
   try {
     let viewQustion = await Qustions.findOne(
