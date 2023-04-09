@@ -1,11 +1,11 @@
 import mysql from "mysql";
 
-let connmysql = () =>{
+// let connmysql = () =>{
     let connmysql = mysql.createConnection({
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'test'
+        database: 'data'
       });
       
       connmysql.connect((err) =>  {
@@ -14,6 +14,6 @@ let connmysql = () =>{
         } 
         console.log("Mysql connected successfully");
       });
-}
+// }
 
   export default connmysql;

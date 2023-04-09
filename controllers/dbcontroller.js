@@ -3,8 +3,8 @@ import Qustions from "../models/qustionModel.js";
 // importing user model for schema
 import User from "../models/userModel.js";
 
-
-// import connmysql from "../database/mqsqlconn.js";
+import mysql from "mysql";
+import connmysql from "../database/mqsqlconn.js";
 // creating qustions in DB
 export const addQustion = async (req, res) => {
   // Spliting data from req.bady to multiple varibles
@@ -44,6 +44,7 @@ export const qustion = async (req, res) => {
   // const params = req.params.email;
   // console.log(params);
   const { qustiontitle, email } = req.body;
+
   try {
     let viewQustion = await Qustions.findOne(
       { qustiontitle },
@@ -73,6 +74,13 @@ export const qustion = async (req, res) => {
 // Validation for solution
 export const validate = async (req, res) => {
   const { qustiontitle, email, solution } = req.body;
+  connmysql.query('SELECT * FROM list WHERE AGE < 18',(err,row)=>{
+    if (err) {
+      console.error('Error querying MySQL:', err);
+      return;
+    }
+    console.log(row);
+  });
   try {
     let viewQustion = await Qustions.findOne(
       { qustiontitle },

@@ -17,7 +17,7 @@ import dbRoute from "./router/dbRoute.js";
 
 
 import authenticationMiddleware from "./middlewares/authMiddleware.js";
-import connmysql from "./database/mqsqlconn.js";
+// import connmysql from "./database/mqsqlconn.js";
 // Creating object for expresss
 const app = express();
 // For allowing other orgin
@@ -42,7 +42,7 @@ app.use("/db", authenticationMiddleware, dbRoute);
 const startserver = async () => {
   await connectDB();
 
-  await connmysql()
+  // await connmysql()
   //  starting server
   app.listen(process.env.PORT, () => {
     console.log(`Server Rur at ${process.env.PORT}`);
