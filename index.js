@@ -41,8 +41,6 @@ app.use("/db", authenticationMiddleware, dbRoute);
 // connnection
 const startserver = async () => {
   await connectDB();
-
-  // await connmysql()
   //  starting server
   app.listen(process.env.PORT, () => {
     console.log(`Server Rur at ${process.env.PORT}`);

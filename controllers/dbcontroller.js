@@ -74,7 +74,7 @@ export const qustion = async (req, res) => {
 // Validation for solution
 export const validate = async (req, res) => {
   const { qustiontitle, email, solution } = req.body;
-  connmysql.query('SELECT * FROM list WHERE AGE < 18',(err,row)=>{
+  connmysql.query('SELECT * FROM list WHERE AGE < 15',(err,row)=>{
     if (err) {
       console.error('Error querying MySQL:', err);
       return;

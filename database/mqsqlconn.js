@@ -12,6 +12,7 @@ import mysql from "mysql";
         if (err) {
           return console.error('error: ' + err.message);
         } 
+        console.log(connmysql)
         console.log("Mysql connected successfully");
       });
 // }
