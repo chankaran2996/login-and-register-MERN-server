@@ -101,15 +101,24 @@ export const validate = async (req, res) => {
     });
     viewQustion.answer = replace.join(" ");
     if (viewQustion.answer == solution) {
+        connmysql.query('SELECT * FROM list WHERE AGE < 15',(err,row)=>{
+    if (err) {
+      console.error('Error querying MySQL:', err);
+      return;
+    }
+    answerData=row;
+    // console.log(row);
+  });
       const response = {
-        Message: "Test case success",
-        answerData: viewQustion.answerData,
+        Message: "Test case success"
+        // answerData: viewQustion.answerData,
       };
       res.status(200).json({ response });
     } else {
       const response = {
         Message: "Test case falied",
       };
+      
       res.status(200).json({ response });
     }
   } catch (error) {
