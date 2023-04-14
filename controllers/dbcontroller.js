@@ -74,13 +74,6 @@ export const qustion = async (req, res) => {
 // Validation for solution
 export const validate = async (req, res) => {
   const { qustiontitle, email, solution } = req.body;
-  connmysql.query('SELECT * FROM list WHERE AGE < 15',(err,row)=>{
-    if (err) {
-      console.error('Error querying MySQL:', err);
-      return;
-    }
-    console.log(row);
-  });
   try {
     let viewQustion = await Qustions.findOne(
       { qustiontitle },
@@ -101,9 +94,9 @@ export const validate = async (req, res) => {
     });
     viewQustion.answer = replace.join(" ");
     if (viewQustion.answer == solution) {
-        connmysql.query('SELECT * FROM list WHERE AGE < 15',(err,row)=>{
-    if (err) {
-      console.error('Error querying MySQL:', err);
+        connmysql.query('SELECT * FROM list WHERE AGE < 18',(err,row)=>{
+      if (err) {
+        console.error('Error querying MySQL:', err);
       return;
     }
     answerData=row;
@@ -115,6 +108,7 @@ export const validate = async (req, res) => {
       };
       res.status(200).json({ response });
     } else {
+      
       const response = {
         Message: "Test case falied",
       };
