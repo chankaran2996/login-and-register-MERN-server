@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 const authenticationMiddleware = async (req, res, next) => {
-  console.log(req)
+  // console.log(req)
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -9,13 +9,13 @@ const authenticationMiddleware = async (req, res, next) => {
   }
 
   const token = authHeader.split(" ")[1];
-  console.log(token);
+  // console.log(token);
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const { id, userName } = decoded;
     req.user = { id, userName };
-    console.log(decoded);
+    // console.log(decoded);
     next();
   } catch (error) {
     throw new UnauthenticatedError("Not authorized to access this route");

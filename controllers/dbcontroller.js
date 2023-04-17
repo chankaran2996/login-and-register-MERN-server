@@ -41,8 +41,6 @@ export const qustionsView = async (req, res) => {
 // geting qustion by using qustion tile
 
 export const qustion = async (req, res) => {
-  // const params = req.params.email;
-  // console.log(params);
   const { qustiontitle, email } = req.body;
 
   try {
@@ -54,7 +52,6 @@ export const qustion = async (req, res) => {
       { email },
       { databaseName: 1, tableName: 1 }
     );
-    console.log(userdetials);
     let arr = viewQustion.explanation.split(" ");
     let replace = arr.map((e) => {
       let subarr = e.split("");
@@ -74,6 +71,16 @@ export const qustion = async (req, res) => {
 // Validation for solution
 export const validate = async (req, res) => {
   const { qustiontitle, email, solution } = req.body;
+  let response,answerData ={};
+  connmysql.query('SELECT * FROM list WHERE AGE < 18',(err,row)=>{
+    if (err) {
+      console.error('Error querying MySQL:', err);
+    return;
+  }
+  // console.log(row);
+  answerData=row;
+  // console.log(answerData);
+});
   try {
     let viewQustion = await Qustions.findOne(
       { qustiontitle },
@@ -93,18 +100,15 @@ export const validate = async (req, res) => {
       }
     });
     viewQustion.answer = replace.join(" ");
+    // let response,answerData ={};
     if (viewQustion.answer == solution) {
-        connmysql.query('SELECT * FROM list WHERE AGE < 18',(err,row)=>{
-      if (err) {
-        console.error('Error querying MySQL:', err);
-      return;
-    }
-    answerData=row;
-    // console.log(row);
-  });
-      const response = {
-        Message: "Test case success"
-        // answerData: viewQustion.answerData,
+        
+  
+  console.log(answerData);
+  
+      response = {
+        Message: "Test case success",
+        answerData: answerData,
       };
       res.status(200).json({ response });
     } else {
