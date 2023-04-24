@@ -72,7 +72,63 @@ export const qustion = async (req, res) => {
 export const validate = async (req, res) => {
   const { qustiontitle, email, solution } = req.body;
   let response,answerData ={};
-  connmysql.query('SELECT * FROM list WHERE AGE < 18',(err,row)=>{
+  connmysql.query('SELECT * FROM list WHERE AGE < 100',(err,row)=>{
+    if (err) {
+      console.error('Error querying MySQL:', err);
+    return;
+  }
+  // console.log(row);
+  answerData=row;
+  // console.log(answerData);
+});
+  try {
+    let viewQustion = await Qustions.findOne(
+      { qustiontitle },
+      { answer: 1, answerData: 1 }
+    );
+    const userdetials = await User.findOne(
+      { email },
+      { databaseName: 1, tableName: 1 }
+    );
+    let arr = viewQustion.answer.split(" ");
+    let replace = arr.map((e) => {
+      let subarr = e.split("");
+      if (subarr[0] == "#") {
+        return userdetials.tableName[subarr[1]];
+      } else {
+        return e;
+      }
+    });
+    viewQustion.answer = replace.join(" ");
+    // let response,answerData ={};
+    if (viewQustion.answer == solution) {
+        
+  
+  console.log(answerData);
+  
+      response = {
+        Message: "Test case success",
+        answerData: answerData,
+      };
+      res.status(200).json({ response });
+    } else {
+      
+      const response = {
+        Message: "Test case falied",
+      };
+      
+      res.status(200).json({ response });
+    }
+  } catch (error) {
+    return res.status(500).send({ error });
+  }
+};
+
+// Validation for solution with conversion
+export const validateConvert = async (req, res) => {
+  const { qustiontitle, email, solution } = req.body;
+  let response,answerData ={};
+  connmysql.query('SELECT * FROM list WHERE AGE < 100',(err,row)=>{
     if (err) {
       console.error('Error querying MySQL:', err);
     return;
