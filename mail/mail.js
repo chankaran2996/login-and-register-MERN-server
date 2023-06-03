@@ -5,7 +5,7 @@ sgMail.setApiKey(process.env.SG);
 
 const Email = async () => {
   function getMessage() {
-    const body = " mike testing 123";
+    const body = "mike testing 123";
     return {
       to: "chandrasekaran2996@gmail.com",
       from: "awsuriya@gmail.com",

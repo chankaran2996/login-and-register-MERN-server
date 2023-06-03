@@ -2,6 +2,7 @@
 import Qustions from "../models/qustionModel.js";
 // importing user model for schema
 import User from "../models/userModel.js";
+import SQLParser from "@synatic/noql"
 
 import mysql from "mysql";
 import connmysql from "../database/mqsqlconn.js";
@@ -72,6 +73,8 @@ export const qustion = async (req, res) => {
 export const validate = async (req, res) => {
   const { qustiontitle, email, solution } = req.body;
   let response,answerData ={};
+  let conver = SQLParser.parseSQL('SELECT * FROM list WHERE AGE < 100');
+  console.log(conver);
   connmysql.query('SELECT * FROM list WHERE AGE < 100',(err,row)=>{
     if (err) {
       console.error('Error querying MySQL:', err);
